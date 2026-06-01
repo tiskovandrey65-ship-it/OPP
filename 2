@@ -4,6 +4,7 @@ class Monster:
         self.hp = hp
         self.dmg = dmg
 
+
     def take_damage(self,damage):
         self.hp -= damage
         print(f'{self.name} получает:{damage}. HP: {self.hp}')
@@ -16,31 +17,30 @@ class Zombie(Monster):
         super().__init__(name,120,10)
 
     def take_damage(self,damage):
-        actual_damahe = damage - 5
-        self.hp -= actual_damahe
-        print(f'{self.name} поглозает 5 урона! Получено: {take_damage}.HP: {self.hp}')
+        self.hp -= damage
+        print(f'{self.name} теряет конечность. Получено: {damage}. HP: {self.hp}')
 
 class Vampire(Monster):
     def __init__(self, name):
         super().__init__(name,80,15)
 
-        def take_damage(self,damage):
-            actual_damahe = damage - 5
-            self.hp -= actual_damahe
-            print(f'{self.name} поглощает 5 урона! Получино {take_damage}.HP: {self.hp}')
+    def take_damage(self,damage):
+        actual_damage = damage - 5
+        self.hp -= actual_damage
+        print(f'{self.name} поглощает 5 урона! Получено {actual_damage}.HP: {self.hp}')
 
-class Ghoust(Monster):
+class Ghost(Monster):
     def __init__(self, name):
-        super().__init__(name,60,15)
+        super().__init__(name,60, 15)
 
         def take_damage(self,damage):
             import random
 
-        if random.random() < 0.3:
-            print(f"{self.name} уклонился от удара")
-        else:
-            self.hp -= damage
-            print(f'{self.name} получил: {self.hp}.HP: {self.hp}')
+            if random.random() < 0.3:
+                print(f'{self.name} уклонился!')
+            else:
+                self.hp -= damage
+                print(f'{self.name}получил:{damage}. HP: {self.hp}')
 
 class Werewolf(Monster):
     def __init__(self, name):
@@ -48,7 +48,14 @@ class Werewolf(Monster):
 
     def take_damage(self,damage):
         self.hp -= damage
-        print(f'{self.name} получил:{damage}. HP: {self.hp}')
+        print(f'{self.name} получил {damage}. HP: {self.hp} ')
 
         if self.hp < 50:
-            print(f'{self.name} трансформируется')
+            print(f"{self.name} трансформируется")
+
+v = Vampire('Дракула')
+v.take_damage(30)
+
+z = Zombie('Зомби')
+z.take_damage(30)
+
