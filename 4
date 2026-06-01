@@ -1,0 +1,23 @@
+class Hunter:
+    def __init__(self,name, hp):
+        self.__name = name
+        self.__hp = 100
+        self.__weapon = []
+
+    def get_name(self):
+        return self.__name
+
+    def get_hp(self):
+        return self.__hp
+
+    def set_hp(self,value):
+        self.__hp = max(0,value)
+
+    def add_weapon(self, weapon):
+        self.__weapons.append(weapon)
+
+    def show_invetory(self):
+       for i in range(len(self.__weapons)):
+        print(f'{self.__weapons[i].name}')
+        
+    
