@@ -1,0 +1,59 @@
+class Monster:
+    def __init__(self,name,hp,dmg):
+        self.name = name
+        self.hp = hp
+        self.dmg = dmg
+
+
+    def take_damage(self,damage):
+        self.hp -= damage
+        print(f'{self.name} получает:{damage}. HP: {self.hp}')
+
+    def attack_hunter(self,hunter):
+        hunter.hp -= self.dmg
+
+class Zombie(Monster):
+    def __init__(self, name):
+        super().__init__(name,120,10)
+
+    def take_damage(self,damage):
+        self.hp -= damage
+        print(f'{self.name} теряет конечность. Получено: {damage}. HP: {self.hp}')
+
+
+
+class Weapon:
+    def __init__(self, name):
+        self.name = name
+    def use(self,monster):
+        pass
+
+
+class SilverSword(Weapon):
+    def __init__(self):
+        super().__init__('серебрянный меч')
+
+    def use(self,monster):
+        print(f'{self.name} атакует {monster.name} на 30 урона!')
+        monster.take_damage(30)
+
+class HolyWater(Weapon):
+    def __init__(self):
+        super().__init__('Святая вода')
+
+    def use(self,monster):
+        print(f'{self.name} атакует {monster.name} на 20 урона!')
+        monster.take_damage(20)
+
+class CrossbowBolt(Weapon):
+    def __init__(self):
+        super().__init__('Арбалет с болтом')
+
+    def use(self,monster):
+        print(f'{self.name} атакует {monster.name} на 25 урона!')
+        monster.take_damage(25)
+
+weapons = [SilverSword(),HolyWater(),CrossbowBolt()]
+zombie = Zombie('Зомби')
+for w in weapons:
+    w.use(zombie)
